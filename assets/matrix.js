@@ -1,7 +1,8 @@
-const rainDropSpeed = 70;
-const rainDropLength = 20;
-const spawnDelay = 1;
-const maxRainDrops = 100;
+const rainDropSpeed = 40;
+const rainDropLength = 25;
+const spawnDelay = 100;
+const maxRainDrops = 1;
+const totalDropTime = rainDropSpeed * rainDropLength;
 
 let rainDrops = $("[data-drop]");
 let body = $("body");
@@ -22,10 +23,16 @@ let rainDrop = $("<div class='matrix-raindrop' data-drop='" + counter + "'><ol><
 body.append(rainDrop);
 */
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
 createRainDrop = () => {
   let rainDrop = $("<div class='matrix-raindrop' data-drop='" + totalRainDrops + "'><ol></ol></div>");
   rainDrop.css({
-    marginLeft: -50, marginTop: -100,
+    marginLeft: -50, marginTop: -300,
     top: (Math.random() * 1000), left: (Math.random() * 2000)
   });
   body.append(rainDrop);
@@ -39,25 +46,35 @@ rainDropTimer = (delay) => {
   })
 }
 
+// fallingLoop = async (rainDropRef) => {
+//   for (let i = 0; i < rainDropLength; i++) {
+//     let randomChar = (Math.random() + 1).toString(36).substring(7)[0].toUpperCase();
+//     let character = $("<li></li>").text(randomChar);
+//     character.addClass( "test" );
+//     rainDropRef.children().append(character); // the .children makes sure it is adding the list item to the list and not just the div
+//     await rainDropTimer(rainDropSpeed);
+//   }
+//   await rainDropTimer(totalDropTime);
+//   rainDropRef.remove();
+// }
+
 fallingLoop = async (rainDropRef) => {
-  for (let i = 0; i < rainDropLength; i++) {
+  let tempL = 0;
+  let tempS = 0;
+  let tempT = 0;
+  tempL = getRandomInt(rainDropLength, rainDropLength * 2);
+  tempS = getRandomInt(rainDropSpeed, rainDropSpeed * 2);
+  tempT = tempL * tempS;
+  for (let i = 0; i < tempL; i++) {
     let randomChar = (Math.random() + 1).toString(36).substring(7)[0].toUpperCase();
     let character = $("<li></li>").text(randomChar);
-    //character.css("color", "white");
+    character.addClass( "test" );
     rainDropRef.children().append(character); // the .children makes sure it is adding the list item to the list and not just the div
-    colorLogic(rainDropRef);
-    await rainDropTimer(rainDropSpeed);
+    await rainDropTimer(tempS);
   }
-  console.log("done");
+  await rainDropTimer(tempT);
   rainDropRef.remove();
 }
-
-
-
-colorLogic = (rainDropRef) => {
-
-}
-
 
 
 createCodeRain = async () => {
@@ -65,7 +82,6 @@ createCodeRain = async () => {
     createRainDrop();
     await rainDropTimer(spawnDelay);
   }
-  console.log("finished loop");
   createCodeRain(); // restart the loop
 }
 

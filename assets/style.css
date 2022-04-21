@@ -4,18 +4,39 @@
   --text-drop-2: #5dbe87;
   --text-drop-3: #36be71;
   --text-drop-4: #00b850;
+  --text-drop-5: #000a03;
+
+  
 }
 
 body {
-  background-color: #000e06;
+  background-color: var(--text-drop-5);
   overflow: hidden;
+  -webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
+}
+
+
+@keyframes change {
+  0% { color: var(--text-drop-0); }
+  20%   { color: var(--text-drop-4); }
+  75%   { color: var(--text-drop-4); }
+  100%   { color: var(--text-drop-5); }
 }
 
 .matrix-raindrop {
-  color: var(--text-drop-4);
   position: absolute;
 }
 
 .matrix-raindrop ol {
+  list-style-type: none;
+}
+
+.matrix-raindrop li {
+  font-size: 20px;
+  color: var(--text-drop-0); 
+  animation: change 1s both; 
   list-style-type: none;
 }
