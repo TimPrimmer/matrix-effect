@@ -8,10 +8,12 @@
 
 body {
   background-color: #000e06;
+  overflow: hidden;
 }
 
 .matrix-raindrop {
   color: var(--text-drop-4);
+  position: absolute;
 }
 
 .matrix-raindrop ol {
