@@ -1,3 +1,9 @@
+@font-face {  
+  font-family: 'Matrix Code NFI';   
+  src: url('MatrixCodeNFI.woff2') format('woff2'),        
+  url('MatrixCodeNFI.woff') format('woff');
+}
+
 :root {
   --text-drop-0: #ffffff;
   --text-drop-1: #80bb9a;
@@ -5,25 +11,19 @@
   --text-drop-3: #36be71;
   --text-drop-4: #00b850;
   --text-drop-5: #000a03;
-
-  
+  --text-drop-6: #00000000;
+  font-family: 'Matrix Code NFI';
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   background-color: var(--text-drop-5);
   overflow: hidden;
   -webkit-user-select: none; /* Safari */        
--moz-user-select: none; /* Firefox */
--ms-user-select: none; /* IE10+/Edge */
-user-select: none; /* Standard */
-}
-
-
-@keyframes change {
-  0% { color: var(--text-drop-0); }
-  20%   { color: var(--text-drop-4); }
-  75%   { color: var(--text-drop-4); }
-  100%   { color: var(--text-drop-5); }
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 .matrix-raindrop {
@@ -35,8 +35,15 @@ user-select: none; /* Standard */
 }
 
 .matrix-raindrop li {
-  font-size: 20px;
+  font-size: 30px;
   color: var(--text-drop-0); 
   animation: change 1s both; 
   list-style-type: none;
+}
+
+@keyframes change {
+  0% { color: var(--text-drop-0); }
+  20%   { color: var(--text-drop-4); }
+  75%   { color: var(--text-drop-4); }
+  100%   { color: var(--text-drop-6); }
 }
