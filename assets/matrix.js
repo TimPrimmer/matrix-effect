@@ -48,7 +48,7 @@ fallingLogic = async (rainDropRef) => {
       glitchLogic(rainDropRef);
     }
     let randomChar = new RandExp(/[a-zA-Z0-9$+\-\*%"'#&(),.;:?!\|{}<>\[\]^~]/g).gen();
-    let fontSize = (((3/100) * window.innerHeight) + ((3/200) * window.innerWidth)) / 2; // scales the font size based on the current window size
+    let fontSize = (((3/100) * window.innerHeight) + ((3/200) * window.innerWidth)) / 2; // scales the font size based on the current window size and height
     let character = $("<li style='font-size:" + fontSize + "px;'></li>").text(randomChar);
     rainDropRef.children().append(character); // the .children makes sure it is adding the list item to the list and not just the div
     await rainDropTimer(tempS);
