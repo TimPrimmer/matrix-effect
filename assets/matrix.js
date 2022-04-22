@@ -1,7 +1,7 @@
 const rainDropSpeed = 50; 
 const rainDropLength = 25;
-const spawnDelay = 100; 
-const glitchChance = 100; 
+const spawnDelay = 150; 
+const glitchChance = 75; // 1 in x chance
 const maxRainDrops = 1;
 const totalDropTime = rainDropSpeed * rainDropLength;
 
@@ -19,7 +19,7 @@ createRainDrop = () => {
   let rainDrop = $("<div class='matrix-raindrop'><ol></ol></div>");
   rainDrop.css({
     marginLeft: -50, marginTop: -300,
-    top: (Math.random() * 1000), left: (Math.random() * 2000)
+    top: (Math.random() * window.innerHeight), left: (Math.random() * window.innerWidth)
   }); // randomizing the drops absolute position
   body.append(rainDrop);
   fallingLogic(rainDrop);
@@ -48,7 +48,8 @@ fallingLogic = async (rainDropRef) => {
       glitchLogic(rainDropRef);
     }
     let randomChar = new RandExp(/[a-zA-Z0-9$+\-\*%"'#&(),.;:?!\|{}<>\[\]^~]/g).gen();
-    let character = $("<li></li>").text(randomChar);
+    let fontSize = (((3/100) * window.innerHeight) + ((3/200) * window.innerWidth)) / 2; // scales the font size based on the current window size
+    let character = $("<li style='font-size:" + fontSize + "px;'></li>").text(randomChar);
     rainDropRef.children().append(character); // the .children makes sure it is adding the list item to the list and not just the div
     await rainDropTimer(tempS);
   }

@@ -35,15 +35,20 @@ body {
 }
 
 .matrix-raindrop li {
-  font-size: 30px;
   color: var(--text-drop-0); 
   animation: change 1s both; 
   list-style-type: none;
 }
 
 @keyframes change {
-  0% { color: var(--text-drop-0); }
-  20%   { color: var(--text-drop-4); }
-  75%   { color: var(--text-drop-4); }
-  100%   { color: var(--text-drop-6); }
+  0% { 
+    color: var(--text-drop-0); 
+    text-shadow:1px 1px 15px rgba(255, 255, 255, 0.466), 1px 1px 15px rgba(204, 204, 204, 0.459);
+  }
+  30% { 
+    color: var(--text-drop-4); 
+    text-shadow: none;
+  }
+  75% { color: var(--text-drop-4); }
+  100% { color: var(--text-drop-6); }
 }
